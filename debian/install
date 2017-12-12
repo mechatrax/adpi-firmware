@@ -1,0 +1,2 @@
+./adpipro-cs0.dtbo /boot/overlays
+./adpipro-cs1.dtbo /boot/overlays

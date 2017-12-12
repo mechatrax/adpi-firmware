@@ -1,0 +1,34 @@
+#!/bin/sh
+# postinst script for adpi-firmware
+#
+# see: dh_installdeb(1)
+
+set -e
+
+OVERLAY=adpipro-cs0
+CONFIG=/boot/config.txt
+
+case "$1" in
+    configure)
+        if [ -e $CONFIG ]; then
+            raspi-config nonint do_i2c 0
+            raspi-config nonint do_spi 0
+            raspi-config nonint set_config_var core_freq 250 $CONFIG
+            if ! grep -q -E "^(device_tree_|dt)overlay=${OVERLAY}" $CONFIG; then
+                printf "dtoverlay=${OVERLAY}\n" >> $CONFIG
+            fi
+        fi
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+
+
+exit 0
