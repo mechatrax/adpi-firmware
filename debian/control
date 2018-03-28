@@ -10,6 +10,6 @@ Vcs-browser: https://github.com/mechatrax/adpi-firmware
 
 Package: adpi-firmware
 Architecture: any
-Depends: ${misc:Depends}, raspberrypi-kernel-mtx
+Depends: ${misc:Depends}, raspberrypi-kernel-mtx (>= 1.20180327-1~mtx1)
 Description: Device tree overlay binary for ADPi
  This package contains the device tree overlay binary for ADPi.
