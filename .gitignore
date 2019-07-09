@@ -1,7 +1,7 @@
-debian/debhelper-build-stamp
+debian/debhelper*
 debian/files
 debian/*.log
 debian/*.substvars
 
+debian/.debhelper/*
 debian/adpi-firmware/*
-
