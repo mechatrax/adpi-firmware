@@ -56,8 +56,8 @@ dtoverlay=adpipro-cs1
 ```
 ### CS0 と CS1 にデバイスを接続する場合
 ```
-dtoverlay=adpipro-cs1
 dtoverlay=adpipro-cs0
+dtoverlay=adpipro-cs1
 ```
 
 Device Tree Parameter には次の項目が指定可能です。
