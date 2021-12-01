@@ -4,8 +4,9 @@ adpi-firmware (1.2.2) bullseye; urgency=medium
   * debian/control
     - Change Build-Depends to debhelper-compat from debhelper
     - Bump Standards-Version to 4.5.1
+  * Fix README.md
 
- -- Yuta Kiyonaga <kiyonaga@mechatrax.com>  Tue, 20 Jul 2021 08:05:24 +0000
+ -- Yuta Kiyonaga <kiyonaga@mechatrax.com>  Wed, 01 Dec 2021 01:42:10 +0000
 
 adpi-firmware (1.2.1) buster; urgency=medium
 
