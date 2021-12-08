@@ -7,22 +7,8 @@
 	fragment@0 {
 		target-path = "/";
 		__overlay__ {
-			regulators {
-				compatible = "simple-bus";
-			};
-		};
-	};
-	
-	fragment@1 {
-		target-path = "/regulators";
-		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			
 			max6126: fixedregulator_refin@1 {
 				compatible = "regulator-fixed";
-				reg = <1>;
-				
 				regulator-name = "max6126-1";
 				regulator-min-microvolt = <5000000>;
 				regulator-max-microvolt = <5000000>;
@@ -32,28 +18,28 @@
 		};
 	};
 	
-	fragment@2 {
+	fragment@1 {
 		target = <&spi0>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 	
-	fragment@3 {
+	fragment@2 {
 		target = <&spidev0>;
 		__overlay__ {
 			status = "disabled";
 		};
 	};
 	
-	fragment@4 {
+	fragment@3 {
 		target = <&spidev1>;
 		__overlay__ {
 			status = "disabled";
 		};
 	};
 	
-	fragment@5 {
+	fragment@4 {
 		target = <&gpio>;
 		__overlay__ {
 			ad7794_pins: ad7794_pins {
@@ -64,7 +50,7 @@
 		};
 	};
 	
-	fragment@6 {
+	fragment@5 {
 		target = <&spi0>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -77,7 +63,7 @@
 				spi-max-frequency = <1000000>;
 				spi-cpha;
 				spi-cpol;
-				interrupts = <25 0x02>;
+				interrupts = <25 0x08>;
 				interrupt-parent = <&gpio>;
 				
 				adi,user-calibration-enable;
@@ -87,7 +73,7 @@
 		};
 	};
 	
-	fragment@7 {
+	fragment@6 {
 		target = <&spi0>;
 		__dormant__ {
 			#address-cells = <1>;
@@ -100,7 +86,7 @@
 				spi-max-frequency = <1000000>;
 				spi-cpha;
 				spi-cpol;
-				interrupts = <25 0x02>;
+				interrupts = <25 0x08>;
 				interrupt-parent = <&gpio>;
 				
 				adi,reference-select = <0>;
@@ -109,14 +95,14 @@
 		};
 	};
 	
-	fragment@8 {
+	fragment@7 {
 		target = <&i2c1>;
 		__overlay__ {
 			status = "okay";
 		};
 	};
 	
-	fragment@9 {
+	fragment@8 {
 		target = <&i2c1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -131,7 +117,7 @@
 		};
 	};
 
-	fragment@10 {
+	fragment@9 {
 		target = <&i2c1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -150,7 +136,7 @@
 		eeprom = <&eeprom0>,"reg:0";
 		gpio = <&gpio0>,"reg:0";
 		irq = <&ad7794_pins>,"brcm,pins:0", <&adc0>,"interrupts:0", <&adc1>,"interrupts:0";
-		autocalib = <0>,"-6+7";
+		autocalib = <0>,"-5+6";
 	};
 };
 
