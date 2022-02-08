@@ -1,3 +1,9 @@
+adpi-firmware (1.3.0.1) bullseye; urgency=medium
+
+  * debian/control: Update architecture
+
+ -- Yuta Kiyonaga <kiyonaga@mechatrax.com>  Tue, 08 Feb 2022 16:17:16 +0900
+
 adpi-firmware (1.3.0) bullseye; urgency=medium
 
   * Modify to be dynamically loadable and unloadable
