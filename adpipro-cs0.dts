@@ -7,11 +7,19 @@
 	fragment@0 {
 		target-path = "/";
 		__overlay__ {
-			max6126: fixedregulator_refin0 {
+			refin: fixedregulator_refin0 {
 				compatible = "regulator-fixed";
-				regulator-name = "max6126-0";
+				regulator-name = "max6126";
 				regulator-min-microvolt = <5000000>;
 				regulator-max-microvolt = <5000000>;
+				regulator-always-on;
+				regulator-boot-on;
+			};
+			vreg: fixedregulator_vcc0 {
+				compatible = "regulator-fixed";
+				regulator-name = "lp2992";
+				regulator-min-microvolt = <3300000>;
+				regulator-max-microvolt = <3300000>;
 				regulator-always-on;
 				regulator-boot-on;
 			};
@@ -68,7 +76,7 @@
 				
 				adi,user-calibration-enable;
 				adi,reference-select = <0>;
-				refin-supply = <&max6126>;
+				refin-supply = <&refin>;
 			};
 		};
 	};
@@ -91,6 +99,7 @@
 				reg = <0x57>;
 				
 				pagesize = <256>;
+				vcc-supply = <&vreg>;
 			};
 		};
 	};
