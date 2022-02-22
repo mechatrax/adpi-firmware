@@ -1,3 +1,9 @@
+adpi-firmware (1.4.0~buster1) buster; urgency=medium
+
+  * Rebuild for buster
+
+ -- Masahiro Honda <honda@mechatrax.com>  Tue, 22 Feb 2022 16:09:15 +0900
+
 adpi-firmware (1.2.1) buster; urgency=medium
 
   * Include device tree source instead of device tree blob overlay

@@ -1,3 +1,5 @@
+*.dtbo
+
 debian/debhelper*
 debian/files
 debian/*.log
