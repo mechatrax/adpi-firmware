@@ -7,17 +7,17 @@
 	fragment@0 {
 		target-path = "/";
 		__overlay__ {
-			refin: fixedregulator_refin1 {
+			refin1: fixedregulator_5v0_refin1 {
 				compatible = "regulator-fixed";
-				regulator-name = "max6126";
+				regulator-name = "max6126-adpi1";
 				regulator-min-microvolt = <5000000>;
 				regulator-max-microvolt = <5000000>;
 				regulator-always-on;
 				regulator-boot-on;
 			};
-			vreg: fixedregulator_vcc1 {
+			vreg1: fixedregulator_3v3_vcc1 {
 				compatible = "regulator-fixed";
-				regulator-name = "lp2992";
+				regulator-name = "lp2992-adpi1";
 				regulator-min-microvolt = <3300000>;
 				regulator-max-microvolt = <3300000>;
 				regulator-always-on;
@@ -50,7 +50,7 @@
 	fragment@4 {
 		target = <&gpio>;
 		__overlay__ {
-			ad7794_pins: ad7794_pins1 {
+			ad7794_irq1: ad7794_pins25 {
 				brcm,pins = <25>;
 				brcm,function = <0>;
 				brcm,pull = <0>;
@@ -64,7 +64,7 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			
-			adc0: ad7794@1 {
+			adc1: ad7794@1 {
 				compatible = "adi,ad7794";
 				reg = <1>;
 				
@@ -74,9 +74,8 @@
 				interrupts = <25 0x02>;
 				interrupt-parent = <&gpio>;
 				
-				adi,user-calibration-enable;
 				adi,reference-select = <0>;
-				refin-supply = <&refin>;
+				refin-supply = <&refin1>;
 			};
 		};
 	};
@@ -94,12 +93,12 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			
-			eeprom0: at24c256@56 {
+			eeprom1: at24c256@56 {
 				compatible = "atmel,24c256";
 				reg = <0x56>;
 				
 				pagesize = <256>;
-				vcc-supply = <&vreg>;
+				vcc-supply = <&vreg1>;
 			};
 		};
 	};
@@ -110,20 +109,23 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			
-			gpio0: mcp23008@26 {
+			gpiom1: mcp23008@26 {
 				compatible = "microchip,mcp23008";
 				gpio-controller;
 				#gpio-cells = <2>;
 				reg = <0x26>;
+				gpio-line-names = "adpipro1_ch0",
+						  "adpipro1_ch1",
+						  "adpipro1_ch2",
+						  "adpipro1_ch3";
 			};
 		};
 	};
 
 	__overrides__ {
-		eeprom = <&eeprom0>,"reg:0";
-		gpio = <&gpio0>,"reg:0";
-		irq = <&ad7794_pins>,"brcm,pins:0", <&adc0>,"interrupts:0";
-		autocalib = <&adc0>,"adi,user-calibration-enable!";
+		eeprom = <&eeprom1>,"reg:0";
+		gpio = <&gpiom1>,"reg:0";
+		irq = <&ad7794_irq1>,"brcm,pins:0", <&adc1>,"interrupts:0";
 	};
 };
 

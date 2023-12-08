@@ -11,8 +11,8 @@ adpipro-cs1.dtbo: adpipro-cs1.dts
 	$(DTC) $(DTCFLAGS) -o $@ $<
 
 install: $(OVERLAYS)
-	install -d $(DESTDIR)/boot/overlays
-	install -m 644 $(OVERLAYS) $(DESTDIR)/boot/overlays
+	install -d $(DESTDIR)/boot/firmware/overlays
+	install -m 644 $(OVERLAYS) $(DESTDIR)/boot/firmware/overlays
 
 clean:
 	rm -f *.dtbo

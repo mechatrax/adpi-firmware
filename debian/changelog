@@ -1,3 +1,10 @@
+adpi-firmware (3.0.0) bookworm; urgency=medium
+
+  * Update for Debian-based kernel and firmware packaging
+  * debian/copyright: Update contact information
+
+ -- Yuta Kiyonaga <kiyonaga@mechatrax.com>  Fri, 08 Dec 2023 11:16:52 +0900
+
 adpi-firmware (2.0.0.1) bookworm; urgency=medium
 
   * debian/control
