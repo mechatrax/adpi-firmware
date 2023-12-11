@@ -7,17 +7,17 @@
 	fragment@0 {
 		target-path = "/";
 		__overlay__ {
-			refin: fixedregulator_refin0 {
+			refin0: fixedregulator_5v0_refin0 {
 				compatible = "regulator-fixed";
-				regulator-name = "max6126";
+				regulator-name = "max6126-adpi0";
 				regulator-min-microvolt = <5000000>;
 				regulator-max-microvolt = <5000000>;
 				regulator-always-on;
 				regulator-boot-on;
 			};
-			vreg: fixedregulator_vcc0 {
+			vreg0: fixedregulator_3v3_vcc0 {
 				compatible = "regulator-fixed";
-				regulator-name = "lp2992";
+				regulator-name = "lp2992-adpi0";
 				regulator-min-microvolt = <3300000>;
 				regulator-max-microvolt = <3300000>;
 				regulator-always-on;
@@ -50,7 +50,7 @@
 	fragment@4 {
 		target = <&gpio>;
 		__overlay__ {
-			ad7794_pins: ad7794_pins0 {
+			ad7794_irq0: ad7794_pins18 {
 				brcm,pins = <18>;
 				brcm,function = <0>;
 				brcm,pull = <0>;
@@ -74,9 +74,8 @@
 				interrupts = <18 0x02>;
 				interrupt-parent = <&gpio>;
 				
-				adi,user-calibration-enable;
 				adi,reference-select = <0>;
-				refin-supply = <&refin>;
+				refin-supply = <&refin0>;
 			};
 		};
 	};
@@ -99,7 +98,7 @@
 				reg = <0x57>;
 				
 				pagesize = <256>;
-				vcc-supply = <&vreg>;
+				vcc-supply = <&vreg0>;
 			};
 		};
 	};
@@ -110,20 +109,23 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			
-			gpio0: mcp23008@27 {
+			gpiom0: mcp23008@27 {
 				compatible = "microchip,mcp23008";
 				gpio-controller;
 				#gpio-cells = <2>;
 				reg = <0x27>;
+				gpio-line-names = "adpipro0_ch0",
+						  "adpipro0_ch1",
+						  "adpipro0_ch2",
+						  "adpipro0_ch3";
 			};
 		};
 	};
 
 	__overrides__ {
 		eeprom = <&eeprom0>,"reg:0";
-		gpio = <&gpio0>,"reg:0";
-		irq = <&ad7794_pins>,"brcm,pins:0", <&adc0>,"interrupts:0";
-		autocalib = <&adc0>,"adi,user-calibration-enable!";
+		gpio = <&gpiom0>,"reg:0";
+		irq = <&ad7794_irq0>,"brcm,pins:0", <&adc0>,"interrupts:0";
 	};
 };
 

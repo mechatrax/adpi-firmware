@@ -6,10 +6,21 @@
 set -e
 
 OVERLAY=adpipro-cs0
-CONFIG=/boot/config.txt
+CONFIG=/boot/firmware/config.txt
+CONFIG_OLD=/boot/config.txt
 
 case "$1" in
     configure)
+        if dpkg --compare-versions "$2" lt "3.0.0"; then
+            if [ ! -h $CONFIG_OLD ]; then
+                if [ -e $CONFIG ]; then
+                    echo "create backup $CONFIG.old of $CONFIG"
+                    cp $CONFIG $CONFIG.old
+                fi
+                mv $CONFIG_OLD $CONFIG
+                ln -s $CONFIG $CONFIG_OLD
+            fi
+        fi
         if [ -e $CONFIG ]; then
             raspi-config nonint do_i2c 0
             raspi-config nonint do_spi 0

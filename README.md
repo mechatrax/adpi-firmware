@@ -6,10 +6,10 @@ ADPi を動作させるためのファームウェアを提供します。
 ## 提供ファイル
 次のファイルがパッケージに含まれています。
 
-### /boot/overlays/adpipro-cs0.dtbo  
+### /boot/firmware/overlays/adpipro-cs0.dtbo  
 ADPi Pro を SPI0 の CS0 で使用するための Device Tree Blob ファイルです。
 
-### /boot/overlays/adpipro-cs1.dtbo  
+### /boot/firmware/overlays/adpipro-cs1.dtbo  
 ADPi Pro を SPI0 の CS1 で使用するための Device Tree Blob ファイルです。
 
 ### /usr/share/doc/adpi-firmware/changelog.gz
@@ -21,7 +21,7 @@ ADPi Pro を SPI0 の CS1 で使用するための Device Tree Blob ファイル
 ## パッケージ
 パッケージのインストール時に次のファイルが変更されます。
 
-### /boot/config.txt  
+### /boot/firmware/config.txt  
 次のエントリが追記されます。
 ```
 dtoverlay=adpipro-cs0
@@ -44,7 +44,7 @@ raspi-config nonint set_config_var core_freq 250 /boot/config.txt
 ```
 
 ## 設定
-/boot/config.txt を編集して Device Tree Overlay の設定を行います。
+/boot/firmware/config.txt を編集して Device Tree Overlay の設定を行います。
 
 ### CS0 にデバイスを接続する場合
 ```
@@ -89,6 +89,3 @@ IRQ の使用する GPIO 番号を指定します。
 | adpipro-cs0 | 18 |
 | adpipro-cs1 | 25 |
 
-### autocalib  
-スケールまたは更新レートを変更した際に、自動で内部キャリブレーションを行います。  
-デフォルトでは無効です。

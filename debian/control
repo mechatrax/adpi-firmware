@@ -11,6 +11,8 @@ Vcs-browser: https://github.com/mechatrax/adpi-firmware
 
 Package: adpi-firmware
 Architecture: armhf arm64
-Depends: ${misc:Depends}, raspberrypi-kernel-mtx (>= 1.20230405-1~mtx1)
+Recommends: adpi-dkms, linux-image-rpi-dummy | linux-image-rpi-v6 [armhf] | linux-image-rpi-v7 [armhf] | linux-image-rpi-v7l [armhf] | linux-image-rpi-v8 [armhf arm64] | linux-image-rpi-2712 [armhf arm64]
+Pre-Depends: mechatrax-firmware-dummy | raspi-firmware
+Depends: ${misc:Depends}, raspi-config (>=20160506)
 Description: Device tree overlay binary for ADPi
  This package contains the device tree overlay binary for ADPi.
