@@ -1,9 +1,10 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: adpi-firmware
+Upstream-Contact: https://github.com/mechatrax/adpi-firmware/issues
 Source: https://github.com/mechatrax/adpi-firmware
 
 Files: *
-Copyright: 2017 MechaTracks Co., Ltd. <info@mechatrax.com>
+Copyright: 2017 MechaTracks Co., Ltd.
 License: MIT
 
 License: MIT
