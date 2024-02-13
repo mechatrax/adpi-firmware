@@ -6,27 +6,22 @@
 set -e
 
 OVERLAY=adpipro-cs0
-CONFIG=/boot/firmware/config.txt
-CONFIG_OLD=/boot/config.txt
+CONFIG_FILE=/boot/firmware/config.txt
+OLD_CONFIG_FILE=/boot/config.txt
 
 case "$1" in
     configure)
         if dpkg --compare-versions "$2" lt "3.0.0"; then
-            if [ ! -h $CONFIG_OLD ]; then
-                if [ -e $CONFIG ]; then
-                    echo "create backup $CONFIG.old of $CONFIG"
-                    cp $CONFIG $CONFIG.old
+            if [ -f $CONFIG_FILE ]; then
+                raspi-config nonint do_i2c 0
+                raspi-config nonint set_config_var core_freq 250 $CONFIG_FILE
+                if ! grep -q -E "^(device_tree_|dt)overlay=${OVERLAY}" $CONFIG_FILE; then
+                    if config=$(grep -E "^(device_tree_|dt)overlay=${OVERLAY}" $OLD_CONFIG_FILE); then
+                        printf "${config}" >> $CONFIG_FILE
+                    else
+                        printf "dtoverlay=${OVERLAY}\n" >> $CONFIG_FILE
+                    fi
                 fi
-                mv $CONFIG_OLD $CONFIG
-                ln -s $CONFIG $CONFIG_OLD
-            fi
-        fi
-        if [ -e $CONFIG ]; then
-            raspi-config nonint do_i2c 0
-            raspi-config nonint do_spi 0
-            raspi-config nonint set_config_var core_freq 250 $CONFIG
-            if ! grep -q -E "^(device_tree_|dt)overlay=${OVERLAY}" $CONFIG; then
-                printf "dtoverlay=${OVERLAY}\n" >> $CONFIG
             fi
         fi
     ;;
