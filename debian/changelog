@@ -1,3 +1,9 @@
+adpi-firmware (3.0.0.1) bookworm; urgency=medium
+
+  * debian/postinst: Fix configuration process for removing symlinks in /boot
+
+ -- Yuta Kiyonaga <kiyonaga@mechatrax.com>  Tue, 13 Feb 2024 16:01:05 +0900
+
 adpi-firmware (3.0.0) bookworm; urgency=medium
 
   * Update for Debian-based kernel and firmware packaging
