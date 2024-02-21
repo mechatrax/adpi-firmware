@@ -1,3 +1,9 @@
+adpi-firmware (3.0.1) bookworm; urgency=medium
+
+  * Fix device tree for Raspberry Pi 5
+
+ -- Yuta Kiyonaga <kiyonaga@mechatrax.com>  Wed, 21 Feb 2024 11:56:38 +0900
+
 adpi-firmware (3.0.0.1) bookworm; urgency=medium
 
   * debian/postinst: Fix configuration process for removing symlinks in /boot
