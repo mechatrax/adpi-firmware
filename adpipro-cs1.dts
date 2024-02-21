@@ -74,6 +74,10 @@
 				interrupts = <25 0x02>;
 				interrupt-parent = <&gpio>;
 				
+				pinctrl-names = "default";
+				pinctrl-0 = <&ad7794_irq1>;
+				gpios = <&gpio 25 0>;
+				
 				adi,reference-select = <0>;
 				refin-supply = <&refin1>;
 			};
