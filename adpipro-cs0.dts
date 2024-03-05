@@ -53,7 +53,7 @@
 			ad7794_irq0: ad7794_pins18 {
 				brcm,pins = <18>;
 				brcm,function = <0>;
-				brcm,pull = <0>;
+				brcm,pull = <2>; /* 2: up */
 			};
 		};
 	};
@@ -71,7 +71,9 @@
 				spi-max-frequency = <1000000>;
 				spi-cpha;
 				spi-cpol;
-				interrupts = <18 0x02>;
+				
+				interrupt-names = "irq";
+				interrupts = <18 0x08>;
 				interrupt-parent = <&gpio>;
 				
 				pinctrl-names = "default";
