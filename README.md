@@ -40,7 +40,7 @@ raspi-config nonint do_spi 0
 ```
 I2C と SPI のクロックソースの動作周波数を固定します。
 ```
-raspi-config nonint set_config_var core_freq 250 /boot/config.txt
+raspi-config nonint set_config_var core_freq 250 /boot/firmware/config.txt
 ```
 
 ## 設定
